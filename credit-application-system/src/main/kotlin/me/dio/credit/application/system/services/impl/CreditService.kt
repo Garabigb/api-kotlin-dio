@@ -3,8 +3,10 @@ package me.dio.credit.application.system.services.impl
 import me.dio.credit.application.system.entity.Credit
 import me.dio.credit.application.system.repositories.CreditRepository
 import me.dio.credit.application.system.services.ICreditService
+import org.springframework.stereotype.Service
 import java.util.*
 
+@Service
 class CreditService (
     private val creditRepository: CreditRepository,
     private val customerService: CustomerService
@@ -15,7 +17,7 @@ class CreditService (
     }
 
     override fun findAllByCustomer(customerId: Long): List<Credit> =
-        this.creditRepository.findAllByCustumerId(customerId)
+        this.creditRepository.findAllByCustomerId(customerId)
 
     override fun findByCreditCode(custumerId: Long, creditCode: UUID): Credit {
         val credit: Credit = (this.creditRepository.findByCreditCode(creditCode) ?:
